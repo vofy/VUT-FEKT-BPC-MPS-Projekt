@@ -1,0 +1,117 @@
+
+**** 03/07/23 11:15:01 *********** Evaluation PSpice (Nov 1999) **************
+
+ BPC-MPS-Projekt
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+*
+Xref    vin     0               trim    vout    REF-02/AD
+R1              trim    r1              470k
+R2              r2              0               1k
+Xpot    vout    r1              r2              POT     PARAMS: VALUE=10k SET=0.5
+
+*
+.SUBCKT POT 1 T 2 PARAMS: VALUE=1K SET=0.5
+        RT 1 T {VALUE*(1-SET)+.001}
+        RB T 2 {VALUE*SET+.001}
+.ENDS
+*
+.LIB "anlg_dev.lib"
+*
+.END
+
+**** 03/07/23 11:15:01 *********** Evaluation PSpice (Nov 1999) **************
+
+ BPC-MPS-Projekt
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               Xref.DX         
+          IS    1.000000E-18 
+
+
+**** 03/07/23 11:15:01 *********** Evaluation PSpice (Nov 1999) **************
+
+ BPC-MPS-Projekt
+
+
+ ****     BJT MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               Xref.QN         
+               NPN             
+          IS    1.000000E-15 
+          BF    1.000000E+03 
+          NF    1            
+          BR    1            
+          NR    1            
+          CN    2.42         
+           D     .87         
+
+
+ERROR -- Convergence problem in bias point calculation
+
+
+  Last node voltages tried were:
+
+ NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
+
+
+(   r1)    -.0777  (   r2)    -.0130  (  vin)-30.65E+06  ( trim)    -.0374      
+
+( vout)    -.1429  (Xref.10) -655.1100                   (Xref.11)-105.7E+06    
+
+(Xref.12)-30.65E+06                   (Xref.13)-56.93E+06                       
+
+(Xref.14)-30.65E+06                   (Xref.15)-30.65E+06                       
+
+(Xref.16)-30.65E+06                   (Xref.17)    -.1429                       
+
+(Xref.18)    -.1429                   (Xref.19)    -.0353                       
+
+(Xref.20)-1.218E+09                   (Xref.21)-1218.0000                   
+
+
+  These voltages failed to converge:
+
+    V(trim)                   =      -0.0375019 / -0.0374197
+    V(r1)                     =      -0.0778702 / -0.0776996
+    V(r2)                     =      -0.0129784 / -0.0129499
+    V(Xref.19)                =      -0.0353546 / -0.0352772
+    V(Xref.17)                =       -0.143191 / -0.142878
+    V(Xref.18)                =       -0.143191 / -0.142878
+    V(vout)                   =       -0.143191 / -0.142878
+
+  These supply currents failed to converge:
+
+    I(Xref.L1)                =   -1.30642e-005 / -1.30356e-005
+    I(Xref.VS)                =    1.30642e-005 / 1.30356e-005
+
+  These devices failed to converge:
+    Xref.Q1   
+
+ERROR -- Discontinuing simulation due to convergence problem
+
+          JOB CONCLUDED
+
+          TOTAL JOB TIME             .02
+

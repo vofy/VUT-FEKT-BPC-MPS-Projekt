@@ -1,0 +1,16 @@
+BPC-MPS-Projekt
+*
+Xref	vin	0		trim	vout	REF-02/AD
+R1		trim	r1		470k
+R2		r2		0		1k
+Xpot	vout	r1		r2		POT	PARAMS: VALUE=10k SET=0.5
+
+*
+.SUBCKT POT 1 T 2 PARAMS: VALUE=1K SET=0.5
+	RT 1 T {VALUE*(1-SET)+.001}
+	RB T 2 {VALUE*SET+.001}
+.ENDS
+*
+.LIB "anlg_dev.lib"
+*
+.END
