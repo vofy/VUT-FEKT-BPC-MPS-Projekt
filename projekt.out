@@ -1,5 +1,5 @@
 
-**** 03/07/23 11:15:01 *********** Evaluation PSpice (Nov 1999) **************
+**** 03/07/23 15:20:59 *********** Evaluation PSpice (Nov 1999) **************
 
  BPC-MPS-Projekt
 
@@ -11,23 +11,42 @@
 
 
 
-*
-Xref    vin     0               trim    vout    REF-02/AD
-R1              trim    r1              470k
-R2              r2              0               1k
-Xpot    vout    r1              r2              POT     PARAMS: VALUE=10k SET=0.5
 
+*-----VOLTAGE SOURCES---------
+Vinp    vin_p   0               DC 15
+Vinn    0               vin_n   DC 15
+*-----VOLTAGE SOURCES---------
+
+Xref            vin_p                   0                               ref_trim        ref_vout                REF-02/AD
+Xopamp  opamp_ninv      opamp_inv       vin_p   vin_n   vout    OP-97/LT
+Xpot            ref_vout                opamp_ninv      0                                       POT     PARAMS: VALUE=50k SET=1
+R1                      ref_vout                opamp_inv       50k
+Rfb             opamp_inv       opamp_inv       50k
+Xout_adj        0                               ref_trim                ref_vout                                        OUT_ADJ
 *
+*
+*
+.SUBCKT OUT_ADJ gnd     trim vout
+        R1              trim    r1              470k
+        R2              r2              gnd     1k
+        Xpot    vout    r1              r2              POT     PARAMS: VALUE=10k SET=0
+.ENDS
+
 .SUBCKT POT 1 T 2 PARAMS: VALUE=1K SET=0.5
         RT 1 T {VALUE*(1-SET)+.001}
         RB T 2 {VALUE*SET+.001}
 .ENDS
 *
+*
+*
 .LIB "anlg_dev.lib"
+.LIB "linear_tech.lib"
+*
+*
 *
 .END
 
-**** 03/07/23 11:15:01 *********** Evaluation PSpice (Nov 1999) **************
+**** 03/07/23 15:20:59 *********** Evaluation PSpice (Nov 1999) **************
 
  BPC-MPS-Projekt
 
@@ -40,11 +59,11 @@ Xpot    vout    r1              r2              POT     PARAMS: VALUE=10k SET=0.
 
 
 
-               Xref.DX         
-          IS    1.000000E-18 
+               Xref.DX         Xopamp.DM1      Xopamp.DM2      
+          IS    1.000000E-18  117.900000E-21  800.000000E-18 
 
 
-**** 03/07/23 11:15:01 *********** Evaluation PSpice (Nov 1999) **************
+**** 03/07/23 15:20:59 *********** Evaluation PSpice (Nov 1999) **************
 
  BPC-MPS-Projekt
 
@@ -57,61 +76,80 @@ Xpot    vout    r1              r2              POT     PARAMS: VALUE=10k SET=0.
 
 
 
-               Xref.QN         
-               NPN             
-          IS    1.000000E-15 
-          BF    1.000000E+03 
-          NF    1            
-          BR    1            
-          NR    1            
-          CN    2.42         
-           D     .87         
+               Xref.QN         Xopamp.QM1      Xopamp.QM2      
+               NPN             NPN             NPN             
+          IS    1.000000E-15  800.000000E-18  800.800000E-18 
+          BF    1.000000E+03   75.000000E+03  150.000000E+03 
+          NF    1               1               1            
+          BR    1               1               1            
+          NR    1               1               1            
+          CN    2.42            2.42            2.42         
+           D     .87             .87             .87         
+
+
+**** 03/07/23 15:20:59 *********** Evaluation PSpice (Nov 1999) **************
+
+ BPC-MPS-Projekt
 
 
-ERROR -- Convergence problem in bias point calculation
+ ****     SMALL SIGNAL BIAS SOLUTION       TEMPERATURE =   27.000 DEG C
 
 
-  Last node voltages tried were:
+******************************************************************************
+
+
 
  NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE     NODE   VOLTAGE
 
 
-(   r1)    -.0777  (   r2)    -.0130  (  vin)-30.65E+06  ( trim)    -.0374      
+( vout)   13.9960  (vin_n)  -15.0000  (vin_p)   15.0000  (Xref.10)    1.2300    
 
-( vout)    -.1429  (Xref.10) -655.1100                   (Xref.11)-105.7E+06    
+(Xref.11)    5.7749                   (Xref.12)   13.7000                       
 
-(Xref.12)-30.65E+06                   (Xref.13)-56.93E+06                       
+(Xref.13)    5.7749                   (Xref.14)    5.7281                       
 
-(Xref.14)-30.65E+06                   (Xref.15)-30.65E+06                       
+(Xref.15)   15.0000                   (Xref.16)   14.9780                       
 
-(Xref.16)-30.65E+06                   (Xref.17)    -.1429                       
+(Xref.17)    5.0093                   (Xref.18)    5.0093                       
 
-(Xref.18)    -.1429                   (Xref.19)    -.0353                       
+(Xref.19)    1.2299                   (Xref.20) 1107.0000                       
 
-(Xref.20)-1.218E+09                   (Xref.21)-1218.0000                   
+(Xref.21)     .0011                   (ref_trim)    1.1909                      
+
+(ref_vout)    5.0093                  (Xopamp.1)   15.0350                      
+
+(Xopamp.8)-302.7E-06                  (opamp_inv)    5.0093                     
+
+(Xopamp.10)    4.4386                 (Xopamp.11)    4.4386                     
+
+(Xopamp.12)    4.4379                 (Xopamp.13)   13.2150                     
+
+(Xopamp.14)  -13.2150                 (Xopamp.17)   13.9970                     
+
+(Xopamp.80)   14.9730                 (Xopamp.90)   14.9730                     
+
+(opamp_ninv)    5.0093                (Xout_adj.r1)     .4568                   
+
+(Xout_adj.r2)     .4568               
 
 
-  These voltages failed to converge:
 
-    V(trim)                   =      -0.0375019 / -0.0374197
-    V(r1)                     =      -0.0778702 / -0.0776996
-    V(r2)                     =      -0.0129784 / -0.0129499
-    V(Xref.19)                =      -0.0353546 / -0.0352772
-    V(Xref.17)                =       -0.143191 / -0.142878
-    V(Xref.18)                =       -0.143191 / -0.142878
-    V(vout)                   =       -0.143191 / -0.142878
 
-  These supply currents failed to converge:
+    VOLTAGE SOURCE CURRENTS
+    NAME         CURRENT
 
-    I(Xref.L1)                =   -1.30642e-005 / -1.30356e-005
-    I(Xref.VS)                =    1.30642e-005 / 1.30356e-005
+    Vinp         8.458E-03
+    Vinn        -3.800E-04
+    Xref.V1      7.925E-12
+    Xref.VS     -5.554E-04
+    Xopamp.VC   -1.039E-02
+    Xopamp.VE    2.721E-11
 
-  These devices failed to converge:
-    Xref.Q1   
+    TOTAL POWER DISSIPATION  -1.03E-01  WATTS
 
-ERROR -- Discontinuing simulation due to convergence problem
+
 
           JOB CONCLUDED
 
-          TOTAL JOB TIME             .02
+          TOTAL JOB TIME             .01
 

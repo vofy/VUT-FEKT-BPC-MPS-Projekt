@@ -1,16 +1,35 @@
 BPC-MPS-Projekt
-*
-Xref	vin	0		trim	vout	REF-02/AD
-R1		trim	r1		470k
-R2		r2		0		1k
-Xpot	vout	r1		r2		POT	PARAMS: VALUE=10k SET=0.5
 
+*-----VOLTAGE SOURCES---------
+Vinp	vin_p	0		DC 15
+Vinn	0		vin_n	DC 15
+*-----VOLTAGE SOURCES---------
+
+Xref		vin_p			0			ref_trim	ref_vout		REF-02/AD
+Xopamp		opamp_ninv		opamp_inv	vin_p 		vin_n	vout	OP-97/LT
+Xpot		ref_vout		opamp_ninv	0			POT	PARAMS: VALUE=50k SET=1
+R1			ref_vout		opamp_inv	50k
+Rfb			opamp_inv		opamp_inv	50k
+Xout_adj	0				ref_trim	ref_vout					OUT_ADJ
 *
+*
+*
+.SUBCKT OUT_ADJ gnd	trim vout
+	R1		trim	r1		470k
+	R2		r2		gnd	1k
+	Xpot	vout	r1		r2		POT	PARAMS: VALUE=10k SET=0
+.ENDS
+
 .SUBCKT POT 1 T 2 PARAMS: VALUE=1K SET=0.5
 	RT 1 T {VALUE*(1-SET)+.001}
 	RB T 2 {VALUE*SET+.001}
 .ENDS
 *
+*
+*
 .LIB "anlg_dev.lib"
+.LIB "linear_tech.lib"
+*
+*
 *
 .END
