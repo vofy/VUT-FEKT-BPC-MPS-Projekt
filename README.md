@@ -3,16 +3,11 @@
 [Celý text práce](https://github.com/vofy/VUT-FEKT-BPC-MPS-Projekt/blob/main/Projekt.pdf)
 
 ## Zadání práce
-- Získejte z Internetu nebo jiným způsobem model SPICE a katalogový list („datasheet“)
-napěťové reference REF-02 firmy Analog Devices.
+- Získejte z Internetu nebo jiným způsobem model SPICE a katalogový list („datasheet“) napěťové reference REF-02 firmy Analog Devices.
 - Součástku stručně popište – funkce, parametry, výčet možných aplikací.
-- S integrovaným obvodem sestavte zdroj symetrického referenčního napětí ±2,5V podle
-doporučeného zapojení uvedeného v katalogovém listu. Popište co nejdetailněji funkci
-zapojení.
-- Změřte závislost obou výstupních napětí naprázdno na vstupním napájecím napětí zdroje.
-Z grafu odečtěte dolní hranici napájecího napětí pro správnou funkci reference.
-- Změřte závislosti obou výstupních napětí na teplotě v rozsahu od –50 do +125 stupňů
-Celsia. Porovnejte s katalogovými údaji.
+- S integrovaným obvodem sestavte zdroj symetrického referenčního napětí ±2,5V podle doporučeného zapojení uvedeného v katalogovém listu. Popište co nejdetailněji funkci zapojení.
+- Změřte závislost obou výstupních napětí naprázdno na vstupním napájecím napětí zdroje. Z grafu odečtěte dolní hranici napájecího napětí pro správnou funkci reference.
+- Změřte závislosti obou výstupních napětí na teplotě v rozsahu od –50 do +125 stupňů Celsia. Porovnejte s katalogovými údaji.
 - Proveďte další experiment dle vlastního uvážení.
 
 ## Výsledky práce
