@@ -30,7 +30,7 @@ _Obrázek 2: Závislost výstupního napětí na teplotě \[4\]_
 
 ### Zatěžovací charakteristika napěťové reference
 
-Na obrázek 3 jsou vyneseny zatěžovací charakteristiky napěťové reference. Z obrázku je patrné, že napěťová reference se chová jako tvrdý napěťový zdroj až do proudu 12,65 mA pro kladnou úroveň napětí a 12,70 mA pro zápornou.
+Na obrázku 3 jsou vyneseny zatěžovací charakteristiky napěťové reference. Z obrázku je patrné, že napěťová reference se chová jako tvrdý napěťový zdroj až do proudu 12,65 mA pro kladnou úroveň napětí a 12,70 mA pro zápornou.
 
 ![Obrázek 3](https://github.com/user-attachments/assets/9b7e1bc4-ab89-4757-8706-454ff06e2d4d)
 
