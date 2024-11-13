@@ -1,0 +1,13 @@
+BPC-MPS - Projekt - Knihovna
+
+.SUBCKT OUT_ADJ gnd trim vout
+	R1   trim   r1       470k
+	R2   r2     gnd      1k
+	Xpot vout   r1   r2  POT PARAMS: VALUE=10k SET=.168
+.ENDS
+
+
+.SUBCKT POT 1 T 2 PARAMS: VALUE=1k SET=0.5
+	RT 1 T {VALUE*(1-MIN(1-1f,SET))}
+	RB T 2 {VALUE*MAX(1f,SET)}
+.ENDS
